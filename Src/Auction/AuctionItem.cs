@@ -16,11 +16,9 @@ namespace Auction
 
         public IEnumerable<Bid> Bids { get; private set; }
 
-        public void Bid(Bid bid)
+        public void AddBid(Bid bid)
         {
             _bids.Add(bid);
         }
-
-
     }
 }

@@ -25,7 +25,7 @@ namespace Auction
             _events.Add(new AuctionCreated(this.Id, items.Select(i => i.Name).ToArray()));
         }
 
-        public void AddBid(int itemId, Bid newBid)
+        public void Bid(int itemId, Bid newBid)
         {
             var item = Items.SingleOrDefault(i => i.Id == itemId);
 
@@ -38,12 +38,13 @@ namespace Auction
 
             if (newBid.Amount <= highestBid)
             {
-                _events.Add(new BidRejected(this.Id, "Bid is less than the highest bid"));
+                _events.Add(new BidRejected(this.Id,itemId,newBid.Bidder,newBid.Amount, "Bid is less than the highest bid"));
             }
 
-            // bid accepted
+            item.AddBid(newBid);
+
+            _events.Add(new BidAccepted(this.Id, itemId, newBid.Bidder, newBid.Amount));
 
         }
-
     }
 }
