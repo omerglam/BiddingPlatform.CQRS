@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Auction.Commands;
+using Auction.API.Commands;
 using Infrastructure;
 
-namespace Auction.Handlers
+namespace Auction.API.Handlers
 {
     public class AuctionCommandHandler : ICommandHandler<AddBidCommand>
     {

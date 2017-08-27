@@ -7,8 +7,8 @@
     <ProjectGuid>{A738925C-DF4E-46D5-85A8-61528E255915}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Auction</RootNamespace>
-    <AssemblyName>Auction</AssemblyName>
+    <RootNamespace>Auction.Domain</RootNamespace>
+    <AssemblyName>Auction.Domain</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -43,11 +43,9 @@
     <Compile Include="Auction.cs" />
     <Compile Include="AuctionItem.cs" />
     <Compile Include="Bid.cs" />
-    <Compile Include="Commands\AddBidCommand.cs" />
     <Compile Include="Events\AuctionCreated.cs" />
     <Compile Include="Events\BidAccepted.cs" />
     <Compile Include="Events\BidRejected.cs" />
-    <Compile Include="Handlers\AuctionCommandHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

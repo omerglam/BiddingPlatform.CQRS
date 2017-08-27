@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Infrastructure;
 
-namespace Auction.Commands
+namespace Auction.API.Commands
 {
     public class AddBidCommand : ICommand
     { 
