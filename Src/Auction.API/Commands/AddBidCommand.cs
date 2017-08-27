@@ -1,9 +1,10 @@
 ﻿using System;
 using Infrastructure;
+using MediatR;
 
 namespace Auction.API.Commands
 {
-    public class AddBidCommand : ICommand
+    public class AddBidCommand : IRequest
     { 
         public Guid Id { get;}
 
@@ -15,13 +16,16 @@ namespace Auction.API.Commands
 
         public int ItemId { get; }
 
-        public AddBidCommand(string bidder, Guid auctionId, int itemId, decimal amount)
+        public DateTime BidTimestamp { get; }
+
+        public AddBidCommand(string bidder, Guid auctionId, int itemId, decimal amount, DateTime bidTimestamp)
         {
             this.Id = Guid.NewGuid();
             Bidder = bidder;
             AuctionId = auctionId;
             ItemId = itemId;
             Amount = amount;
+            BidTimestamp = bidTimestamp;
         }
     }
 }

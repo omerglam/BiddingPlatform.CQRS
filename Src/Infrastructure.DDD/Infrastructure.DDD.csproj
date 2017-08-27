@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A738925C-DF4E-46D5-85A8-61528E255915}</ProjectGuid>
+    <ProjectGuid>{8D96397B-C503-4B43-AC26-943DB4CE45E4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Auction.Domain</RootNamespace>
-    <AssemblyName>Auction.Domain</AssemblyName>
+    <RootNamespace>Infrastructure.DDD</RootNamespace>
+    <AssemblyName>Infrastructure.DDD</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -43,22 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Auction.cs" />
-    <Compile Include="AuctionItem.cs" />
-    <Compile Include="Bid.cs" />
-    <Compile Include="Events\AuctionCreated.cs" />
-    <Compile Include="Events\BidAccepted.cs" />
-    <Compile Include="Events\BidRejected.cs" />
+    <Compile Include="IAggregateRepository.cs" />
+    <Compile Include="IAggregateRoot.cs" />
+    <Compile Include="IEventPublisher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Infrastructure.DDD\Infrastructure.DDD.csproj">
-      <Project>{8d96397b-c503-4b43-ac26-943db4ce45e4}</Project>
-      <Name>Infrastructure.DDD</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

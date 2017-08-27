@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Infrastructure;
+using MediatR;
 
 namespace Auction.Events
 {
-    public class AuctionCreated : IEvent
+    public class AuctionCreated : INotification
     {
         public Guid SourceId { get; private set; }
 

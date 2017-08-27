@@ -1,21 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Auction.Events;
+using Common.Infrastructure;
 using Infrastructure;
+using MediatR;
 
-namespace Auction
+namespace Auction.Domain
 {
     public class Auction : IAggregateRoot, IEventPublisher
     {
         public Guid Id { get; private set; }
 
-        private List<IEvent> _events = new List<IEvent>();
-        public IEnumerable<IEvent> Events  => _events; 
+        private List<INotification> _events = new List<INotification>();
+        public IEnumerable<INotification> Events  => _events; 
 
         public AuctionItem[] Items { get; private set; }
+
 
         public Auction(Guid id, AuctionItem[] items)
         {
@@ -25,25 +26,25 @@ namespace Auction
             _events.Add(new AuctionCreated(this.Id, items.Select(i => i.Name).ToArray()));
         }
 
-        public void Bid(int itemId, Bid newBid)
+        public void AddBid(int itemId, string bidder, decimal amount, DateTime bidTimestamp)
         {
             var item = Items.SingleOrDefault(i => i.Id == itemId);
 
             if (item == null)
             {
-                throw new InvalidOperationException($"item with id : {itemId} couldn't be found");
+                throw new InvalidOperationException($"item with id : {itemId} doesn't exists");
             }
 
             var highestBid = item.Bids.Max(i => i.Amount);
 
-            if (newBid.Amount <= highestBid)
+            if (amount <= highestBid)
             {
-                _events.Add(new BidRejected(this.Id,itemId,newBid.Bidder,newBid.Amount, "Bid is less than the highest bid"));
+                _events.Add(new BidRejected(this.Id,itemId, bidder,amount, "Bid is less than the highest bid", bidTimestamp));
             }
 
-            item.AddBid(newBid);
+            item.AddBid(new Bid(bidder, amount, bidTimestamp));
 
-            _events.Add(new BidAccepted(this.Id, itemId, newBid.Bidder, newBid.Amount));
+            _events.Add(new BidAccepted(this.Id, itemId, bidder, amount, bidTimestamp));
 
         }
     }

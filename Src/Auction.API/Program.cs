@@ -10,6 +10,7 @@ namespace Auction.API
     {
         static void Main(string[] args)
         {
+            //Todo: use Owin self host with TopShelf 
         }
     }
 }

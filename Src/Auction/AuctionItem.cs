@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Auction
+namespace Auction.Domain
 {
     public class AuctionItem
     {
