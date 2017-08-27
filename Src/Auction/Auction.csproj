@@ -43,7 +43,11 @@
     <Compile Include="Auction.cs" />
     <Compile Include="AuctionItem.cs" />
     <Compile Include="Bid.cs" />
+    <Compile Include="Commands\AddBidCommand.cs" />
     <Compile Include="Events\AuctionCreated.cs" />
+    <Compile Include="Events\BidAccepted.cs" />
+    <Compile Include="Events\BidRejected.cs" />
+    <Compile Include="Handlers\AuctionCommandHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,10 +1,12 @@
-﻿namespace Infrastructure
+﻿using System.Threading.Tasks;
+
+namespace Infrastructure
 {
     public interface ICommandHandler { }
 
     public interface ICommandHandler<T> : ICommandHandler
         where T : ICommand
     {
-        void Handle(T command);
+        Task Handle(T command);
     }
 }
