@@ -13,6 +13,7 @@ namespace Auction.Domain
         public Guid Id { get; private set; }
 
         private List<INotification> _events = new List<INotification>();
+
         public IEnumerable<INotification> Events  => _events; 
 
         public AuctionItem[] Items { get; private set; }
@@ -35,11 +36,11 @@ namespace Auction.Domain
                 throw new InvalidOperationException($"item with id : {itemId} doesn't exists");
             }
 
-            var highestBid = item.Bids.Max(i => i.Amount);
+            var highestBid = item.Bids.Max(i => i.Amount); //TODO: should this domain logic be in the entity? if so - how to propogate the domain event? from he AggregateRoot or entity?
 
             if (amount <= highestBid)
             {
-                _events.Add(new BidRejected(this.Id,itemId, bidder,amount, "Bid is less than the highest bid", bidTimestamp));
+                _events.Add(new BidRejected(this.Id,itemId, bidder,amount, "Bid is less than the highest bid", bidTimestamp)); //TODO: should 
             }
 
             item.AddBid(new Bid(bidder, amount, bidTimestamp));

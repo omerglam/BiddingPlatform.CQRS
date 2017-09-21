@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Auction.API.Events
+namespace Auction.API.Events.IntegrationEvents
 {
     public class BidAddedIntegrationEvent //Todo : marker interface for integration events?
     {

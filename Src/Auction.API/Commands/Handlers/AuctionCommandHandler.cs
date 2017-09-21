@@ -7,7 +7,7 @@ namespace Auction.API.Commands.Handlers
 {
     public class AuctionCommandHandler : IAsyncRequestHandler<AddBidCommand>
     {
-        private IAggregateRepository<Domain.Auction> _auctionRepository;
+        private readonly IAggregateRepository<Domain.Auction> _auctionRepository;
 
         public AuctionCommandHandler(IAggregateRepository<Domain.Auction> auctionRepository)
         {

@@ -62,12 +62,15 @@
     <Compile Include="Events\IntegrationEvents\BidAddedIntegrationEvent.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReadModel\Model\AuctionStatusReadModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ReadModel\Generators\" />
+  </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
@@ -76,9 +79,9 @@
       <Project>{a738925c-df4e-46d5-85a8-61528e255915}</Project>
       <Name>Auction.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Infrastructure\Infrastructure.Messaging.csproj">
-      <Project>{6b355d64-3e06-421c-94b9-b4627c91de76}</Project>
-      <Name>Infrastructure.Messaging</Name>
+    <ProjectReference Include="..\Infrastructure.DDD\Infrastructure.DDD.csproj">
+      <Project>{8d96397b-c503-4b43-ac26-943db4ce45e4}</Project>
+      <Name>Infrastructure.DDD</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

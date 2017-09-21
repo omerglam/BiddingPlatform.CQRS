@@ -48,6 +48,10 @@
       <Project>{a738925c-df4e-46d5-85a8-61528e255915}</Project>
       <Name>Auction.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.DDD\Infrastructure.DDD.csproj">
+      <Project>{8D96397B-C503-4B43-AC26-943DB4CE45E4}</Project>
+      <Name>Infrastructure.DDD</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Infrastructure\Infrastructure.Messaging.csproj">
       <Project>{6b355d64-3e06-421c-94b9-b4627c91de76}</Project>
       <Name>Infrastructure.Messaging</Name>
