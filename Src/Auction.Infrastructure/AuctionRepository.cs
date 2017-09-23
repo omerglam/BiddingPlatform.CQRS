@@ -28,4 +28,6 @@ namespace Auction.Infrastructure
             throw new NotImplementedException();
         }
     }
+
+
 }

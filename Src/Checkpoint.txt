@@ -1,0 +1,4 @@
+-- Todo:
+
+1) implement auction repository\unit of work pattern with EF
+2) Orleans actors as cache layers (+ SignlarR publication of notification to clients)
