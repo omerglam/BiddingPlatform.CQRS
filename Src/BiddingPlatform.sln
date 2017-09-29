@@ -17,6 +17,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructures", "Infrastr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.DDD", "Infrastructure.DDD\Infrastructure.DDD.csproj", "{8D96397B-C503-4B43-AC26-943DB4CE45E4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5BF4F99C-DD58-4CA2-B640-C53CBC693E10}"
+	ProjectSection(SolutionItems) = preProject
+		Checkpoint.txt = Checkpoint.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Persistence.EF", "Infrastructure.Persistence.EF\Infrastructure.Persistence.EF.csproj", "{AD46066A-0F7B-44F5-9934-94A0C7F4606F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +50,10 @@ Global
 		{8D96397B-C503-4B43-AC26-943DB4CE45E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D96397B-C503-4B43-AC26-943DB4CE45E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D96397B-C503-4B43-AC26-943DB4CE45E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD46066A-0F7B-44F5-9934-94A0C7F4606F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD46066A-0F7B-44F5-9934-94A0C7F4606F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD46066A-0F7B-44F5-9934-94A0C7F4606F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD46066A-0F7B-44F5-9934-94A0C7F4606F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,5 +64,6 @@ Global
 		{3C55C34E-E8A6-4FD4-BFE5-D5AE61F8D196} = {8CC176FB-D107-4D0A-9637-E7A0D0577919}
 		{7E7424FF-41AB-496A-ABFD-C19B134721F6} = {8CC176FB-D107-4D0A-9637-E7A0D0577919}
 		{8D96397B-C503-4B43-AC26-943DB4CE45E4} = {D7B61A37-370D-46BA-ABE3-40FBFA4096A1}
+		{AD46066A-0F7B-44F5-9934-94A0C7F4606F} = {D7B61A37-370D-46BA-ABE3-40FBFA4096A1}
 	EndGlobalSection
 EndGlobal
