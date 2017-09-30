@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Infrastructure;
+using Infrastructure.DDD;
 using MediatR;
 
 namespace Auction.API.Commands.Handlers

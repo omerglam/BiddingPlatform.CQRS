@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Infrastructure
+namespace Infrastructure.DDD
 {
     public interface IAggregateRepository<T> where T : IAggregateRoot
     {

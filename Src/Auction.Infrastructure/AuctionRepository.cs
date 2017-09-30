@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Infrastructure;
+using Infrastructure.DDD;
+using Infrastructure.Persistence.EF;
 
 namespace Auction.Infrastructure
 {

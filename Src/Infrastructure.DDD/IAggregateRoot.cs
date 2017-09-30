@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Linq;
-using System.Text;
 
-namespace Infrastructure
+namespace Infrastructure.DDD
 {
     public interface IAggregateRoot
     {

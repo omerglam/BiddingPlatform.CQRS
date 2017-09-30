@@ -4,6 +4,7 @@ using System.Linq;
 using Auction.Events;
 using Common.Infrastructure;
 using Infrastructure;
+using Infrastructure.DDD;
 using MediatR;
 
 namespace Auction.Domain
@@ -12,6 +13,8 @@ namespace Auction.Domain
     {
         public Guid Id { get; private set; }
 
+        public string Name { get; private set; }
+
         private List<INotification> _events = new List<INotification>();
 
         public IEnumerable<INotification> Events  => _events; 
@@ -19,12 +22,13 @@ namespace Auction.Domain
         public AuctionItem[] Items { get; private set; }
 
 
-        public Auction(Guid id, AuctionItem[] items)
+        public Auction(Guid id, string name, AuctionItem[] items)
         {
             Id = id;
             Items = items;
+            Name = name;
 
-            _events.Add(new AuctionCreated(this.Id, items.Select(i => i.Name).ToArray()));
+            _events.Add(new AuctionCreated(this.Id, this.Name, items.Select(i => i.Name).ToArray()));
         }
 
         public void AddBid(int itemId, string bidder, decimal amount, DateTime bidTimestamp)
