@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,7 @@ namespace Auction.Infrastructure
             // (shared DbContext per lifetime scope)
             // publish integration events to the bus (use outbox pattern to persist event to db togther in the single transaction + 
             // + and have a background worker reading events and publishing?)
+
 
             throw new NotImplementedException();
         }

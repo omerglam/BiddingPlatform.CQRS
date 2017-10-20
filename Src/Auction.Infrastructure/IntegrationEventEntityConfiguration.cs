@@ -2,7 +2,7 @@
 
 namespace Auction.Infrastructure
 {
-    public class IntegrationEventEntityConfiguration : EntityTypeConfiguration<EventEntity>
+    internal class IntegrationEventEntityConfiguration : EntityTypeConfiguration<IntegrationEventEntity>
     {
         public IntegrationEventEntityConfiguration()
         {

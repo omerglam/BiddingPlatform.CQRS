@@ -7,10 +7,15 @@ using System.Threading.Tasks;
 
 namespace Auction.Infrastructure
 {
-    public class AuctionContext : DbContext
+    internal class AuctionContext : DbContext
     {
-        public virtual DbSet<Domain.Auction> Auction { get; set; }
-        public virtual DbSet<EventEntity> IntegrationEvents { get; set; }
+        internal virtual DbSet<Domain.Auction> Auctions { get; set; }
+
+        internal virtual DbSet<Domain.AuctionItem> AuctionItems { get; set; }
+
+        internal virtual DbSet<Domain.Bid> Bids { get; set; }
+
+        internal virtual DbSet<IntegrationEventEntity> IntegrationEvents { get; set; }
 
         public AuctionContext() : base("Auction")
         {

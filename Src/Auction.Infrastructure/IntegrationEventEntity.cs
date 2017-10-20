@@ -2,7 +2,7 @@
 
 namespace Auction.Infrastructure
 {
-    public class EventEntity
+    internal class IntegrationEventEntity
     {
         public Guid Id { get; private set; }
 
@@ -10,7 +10,7 @@ namespace Auction.Infrastructure
 
         public string Payload { get; private set; }
 
-        public EventEntity(Guid id, DateTime timestamp, string payload)
+        public IntegrationEventEntity(Guid id, DateTime timestamp, string payload)
         {
             Id = id;
             Timestamp = timestamp;

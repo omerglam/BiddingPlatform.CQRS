@@ -18,4 +18,19 @@ namespace Auction.Infrastructure
 
         }
     }
+
+    public class AuctionItemEntityConfiguration : EntityTypeConfiguration<Domain.AuctionItem>
+    {
+        public AuctionItemEntityConfiguration()
+        {
+            ToTable("Auction_Items");
+            
+        }
+    }
+
+    public class BidEntityConfiguration : EntityTypeConfiguration<Domain.Bid>
+    {
+        
+    }
+
 }

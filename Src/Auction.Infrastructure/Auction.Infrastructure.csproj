@@ -50,6 +50,8 @@
     <Compile Include="AuctionContext.cs" />
     <Compile Include="AuctionEntityConfiguration.cs" />
     <Compile Include="AuctionRepository.cs" />
+    <Compile Include="IntegrationEventEntity.cs" />
+    <Compile Include="IntegrationEventEntityConfiguration.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
