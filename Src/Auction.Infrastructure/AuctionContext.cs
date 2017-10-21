@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Auction.Infrastructure.EntitiesConfigurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace Auction.Infrastructure
@@ -33,6 +34,8 @@ namespace Auction.Infrastructure
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new AuctionEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new AuctionItemEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new BidEntityConfiguration());
             modelBuilder.ApplyConfiguration(new IntegrationEventEntityConfiguration());
 
             base.OnModelCreating(modelBuilder);

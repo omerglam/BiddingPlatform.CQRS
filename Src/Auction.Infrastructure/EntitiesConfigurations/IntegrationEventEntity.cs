@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Auction.Infrastructure
+namespace Auction.Infrastructure.EntitiesConfigurations
 {
     internal class IntegrationEventEntity
     {

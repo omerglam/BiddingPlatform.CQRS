@@ -12,13 +12,20 @@ namespace Auction.Domain
 
         public decimal? ReservedPrice { get; private set; }
 
-        private List<Bid> _bids;
+        public ICollection<Bid> Bids { get; private set; }
 
-        public IEnumerable<Bid> Bids { get; private set; }
+        public AuctionItem(int id, string name, string description, decimal? reservedPrice)
+        {
+            Id = id;
+            Name = name;
+            Description = description;
+            ReservedPrice = reservedPrice;
+            Bids = new List<Bid>();
+        }
 
         public void AddBid(Bid bid)
         {
-            _bids.Add(bid);
+            Bids.Add(bid);
         }
     }
 }

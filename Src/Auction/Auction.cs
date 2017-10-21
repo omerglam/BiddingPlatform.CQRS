@@ -17,9 +17,10 @@ namespace Auction.Domain
 
         private List<INotification> _events = new List<INotification>();
 
-        public IEnumerable<INotification> Events  => _events; 
+        public IEnumerable<INotification> Events  => _events;
 
-        public AuctionItem[] Items { get; private set; }
+        //public AuctionItem[] Items { get; private set; }
+        public ICollection<AuctionItem> Items { get; private set; }
 
 
         public Auction(Guid id, string name, AuctionItem[] items)

@@ -9,8 +9,11 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Auction.Infrastructure</RootNamespace>
     <AssemblyName>Auction.Infrastructure</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,6 +35,9 @@
   <ItemGroup>
     <Reference Include="Microsoft.EntityFrameworkCore, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.EntityFrameworkCore.2.0.0\lib\netstandard2.0\Microsoft.EntityFrameworkCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore.Design, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.EntityFrameworkCore.Design.2.0.0\lib\net461\Microsoft.EntityFrameworkCore.Design.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.EntityFrameworkCore.Relational, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.EntityFrameworkCore.Relational.2.0.0\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Relational.dll</HintPath>
@@ -113,11 +119,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuctionContext.cs" />
-    <Compile Include="AuctionEntityConfiguration.cs" />
-    <Compile Include="AuctionRepository.cs" />
-    <Compile Include="IntegrationEventEntity.cs" />
+    <Compile Include="EntitiesConfigurations\AuctionEntityConfiguration.cs" />
+    <Compile Include="EntitiesConfigurations\AuctionItemEntityConfiguration.cs" />
+    <Compile Include="EntitiesConfigurations\BidEntityConfiguration.cs" />
+    <Compile Include="EntitiesConfigurations\AuctionRepository.cs" />
+    <Compile Include="EntitiesConfigurations\IntegrationEventEntity.cs" />
     <Compile Include="IntegrationEventEntityConfiguration.cs" />
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\20171021174136_initial.cs" />
+    <Compile Include="Migrations\20171021174136_initial.designer.cs">
+      <DependentUpon>20171021174136_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\AuctionContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

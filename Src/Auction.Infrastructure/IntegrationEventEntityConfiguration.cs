@@ -1,5 +1,6 @@
 ﻿
 
+using Auction.Infrastructure.EntitiesConfigurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

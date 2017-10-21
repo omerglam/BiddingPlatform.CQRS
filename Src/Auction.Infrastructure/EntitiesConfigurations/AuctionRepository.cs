@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Infrastructure;
 using Infrastructure.DDD;
-using Infrastructure.Persistence.EF;
 
-namespace Auction.Infrastructure
+namespace Auction.Infrastructure.EntitiesConfigurations
 {
     public class AuctionRepository : IAggregateRepository<Domain.Auction>
     {
