@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.Migrations;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Auction.Infrastructure
 {
@@ -17,16 +17,23 @@ namespace Auction.Infrastructure
 
         internal virtual DbSet<IntegrationEventEntity> IntegrationEvents { get; set; }
 
-        public AuctionContext() : base("Auction")
-        {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<AuctionContext, Migrations.Configuration>());
+        //public AuctionContext() : base("Auction")
+        //{
+        //    Database.SetInitializer(new MigrateDatabaseToLatestVersion<AuctionContext, Migrations.Configuration>());
+        //
+        //}
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["Auction"].ConnectionString);
+
+            base.OnConfiguring(optionsBuilder);
         }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Configurations.Add(new AuctionEntityConfiguration());
-            modelBuilder.Configurations.Add(new IntegrationEventEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new AuctionEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new IntegrationEventEntityConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

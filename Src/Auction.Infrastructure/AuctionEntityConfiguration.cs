@@ -1,36 +1,50 @@
-﻿using System.Data.Entity.ModelConfiguration;
+﻿using Auction.Domain;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Auction.Infrastructure
 {
-    public class AuctionEntityConfiguration : EntityTypeConfiguration<Domain.Auction>
+    public class AuctionEntityConfiguration : IEntityTypeConfiguration<Domain.Auction>
     {
         public AuctionEntityConfiguration()
         {
-            ToTable("auction");
+            
 
-            HasKey(e => e.Id);
-            Property(e => e.Id).HasColumnName("Id");
-            Property(e => e.Name).HasColumnName("Name");
+        }
+
+        public void Configure(EntityTypeBuilder<Domain.Auction> builder)
+        {
+            builder.ToTable("auction");
+
+            builder.HasKey(e => e.Id);
+            builder.Property(e => e.Id).HasColumnName("Id");
+            builder.Property(e => e.Name).HasColumnName("Name");
 
             //Ignore(e => e.Events);
 
-            HasMany(a => a.Items);
-
+            builder.HasMany(a => a.Items);
         }
     }
 
-    public class AuctionItemEntityConfiguration : EntityTypeConfiguration<Domain.AuctionItem>
+    public class AuctionItemEntityConfiguration : IEntityTypeConfiguration<Domain.AuctionItem>
     {
         public AuctionItemEntityConfiguration()
         {
-            ToTable("Auction_Items");
             
+        }
+
+        public void Configure(EntityTypeBuilder<AuctionItem> builder)
+        {
+            builder.ToTable("Auction_Items");
         }
     }
 
-    public class BidEntityConfiguration : EntityTypeConfiguration<Domain.Bid>
+    public class BidEntityConfiguration : IEntityTypeConfiguration<Domain.Bid>
     {
-        
+        public void Configure(EntityTypeBuilder<Bid> builder)
+        {
+            
+        }
     }
 
 }

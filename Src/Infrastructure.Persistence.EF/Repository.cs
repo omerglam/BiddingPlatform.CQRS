@@ -1,9 +1,8 @@
 using System;
-using System.Data.Entity;
-using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence.EF
 {
@@ -37,15 +36,34 @@ namespace Infrastructure.Persistence.EF
             return entity;
         }
 
-        public void AddOrUpdate(T entity)
+        public async Task Add(T entity)
         {
             if (_context.Entry(entity).State == EntityState.Detached)
             {
                 _dbSet.Attach(entity);
             }
 
-            _dbSet.AddOrUpdate(entity);
+            await _dbSet.AddAsync(entity);
+        }
 
+        public async Task Modify(T entity)
+        {
+            if (_context.Entry(entity).State == EntityState.Detached)
+            {
+                _dbSet.Attach(entity);
+            }
+
+            _dbSet.Update(entity);
+        }
+
+        public async Task Remove(T entity)
+        {
+            if (_context.Entry(entity).State == EntityState.Detached)
+            {
+                _dbSet.Attach(entity);
+            }
+
+            _dbSet.Remove(entity);
         }
     }
 }

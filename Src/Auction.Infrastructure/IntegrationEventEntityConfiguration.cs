@@ -1,14 +1,16 @@
-﻿using System.Data.Entity.ModelConfiguration;
+﻿
+
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Auction.Infrastructure
 {
-    internal class IntegrationEventEntityConfiguration : EntityTypeConfiguration<IntegrationEventEntity>
+    internal class IntegrationEventEntityConfiguration : IEntityTypeConfiguration<IntegrationEventEntity>
     {
-        public IntegrationEventEntityConfiguration()
+        public void Configure(EntityTypeBuilder<IntegrationEventEntity> builder)
         {
-            ToTable("integration_events_queue");
-            Property(e => e.Payload).HasMaxLength(int.MaxValue);
+            builder.ToTable("integration_events_queue");
+            builder.Property(e => e.Payload).HasMaxLength(int.MaxValue);
         }
-
     }
 }
