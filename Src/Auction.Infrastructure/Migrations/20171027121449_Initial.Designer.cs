@@ -11,8 +11,8 @@ using System;
 namespace Auction.Infrastructure.Migrations
 {
     [DbContext(typeof(AuctionContext))]
-    [Migration("20171021174136_initial")]
-    partial class initial
+    [Migration("20171027121449_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,7 +33,7 @@ namespace Auction.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("auction");
+                    b.ToTable("Auction");
                 });
 
             modelBuilder.Entity("Auction.Domain.AuctionItem", b =>
@@ -42,7 +42,8 @@ namespace Auction.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("NEWID()");
 
-                    b.Property<Guid?>("AuctionId");
+                    b.Property<Guid?>("AuctionId")
+                        .IsRequired();
 
                     b.Property<string>("Description");
 
@@ -53,6 +54,9 @@ namespace Auction.Infrastructure.Migrations
                     b.Property<decimal?>("ReservedPrice");
 
                     b.HasKey("UniqueId");
+
+                    b.HasAlternateKey("Id", "AuctionId")
+                        .HasName("AlternateKey_itemId_auctionId");
 
                     b.HasIndex("AuctionId");
 
@@ -94,14 +98,15 @@ namespace Auction.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("integration_events_queue");
+                    b.ToTable("Integration_events_queue");
                 });
 
             modelBuilder.Entity("Auction.Domain.AuctionItem", b =>
                 {
                     b.HasOne("Auction.Domain.Auction")
                         .WithMany("Items")
-                        .HasForeignKey("AuctionId");
+                        .HasForeignKey("AuctionId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Auction.Domain.Bid", b =>

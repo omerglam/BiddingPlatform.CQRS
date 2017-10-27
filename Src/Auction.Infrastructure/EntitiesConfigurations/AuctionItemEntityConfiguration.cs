@@ -15,9 +15,11 @@ namespace Auction.Infrastructure.EntitiesConfigurations
             builder.Property<Guid>("UniqueId").ValueGeneratedOnAdd().HasDefaultValueSql("NEWID()");
 
             builder.HasKey("UniqueId");
-            //builder.HasKey(e => e.Id); //TODO: auto-generated per auction id?
 
-            // TODO: shadow property to the auction id
+            builder.HasAlternateKey("Id", "AuctionId").HasName("AlternateKey_itemId_auctionId"); // Id is scoped and unique per auction id 
+
+            
+
         }
     }
 }

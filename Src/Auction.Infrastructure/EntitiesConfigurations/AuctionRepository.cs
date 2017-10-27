@@ -8,7 +8,7 @@ namespace Auction.Infrastructure.EntitiesConfigurations
     {
         //Todo: EF repository/unit of work implementation
 
-        public Task Save(Domain.Auction aggregate)
+        public Task Save(Domain.Auction aggregate) //TODO: distinguish between Add\Update on the generic repository operations
         {
             //Todo:
             // execute all domain events (scan the aggregate and publish with mediator)

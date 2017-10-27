@@ -8,7 +8,7 @@ namespace Auction.Infrastructure
 
         public void Configure(EntityTypeBuilder<Domain.Auction> builder)
         {
-            builder.ToTable("auction");
+            builder.ToTable("Auction");
 
             builder.HasKey(e => e.Id);
             builder.Property(e => e.Id).HasColumnName("Id");

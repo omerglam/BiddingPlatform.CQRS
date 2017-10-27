@@ -10,7 +10,7 @@ namespace Auction.Infrastructure
     {
         public void Configure(EntityTypeBuilder<IntegrationEventEntity> builder)
         {
-            builder.ToTable("integration_events_queue");
+            builder.ToTable("Integration_events_queue");
             builder.Property(e => e.Payload).HasMaxLength(int.MaxValue);
         }
     }

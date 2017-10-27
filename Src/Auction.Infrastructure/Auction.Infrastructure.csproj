@@ -125,9 +125,9 @@
     <Compile Include="EntitiesConfigurations\AuctionRepository.cs" />
     <Compile Include="EntitiesConfigurations\IntegrationEventEntity.cs" />
     <Compile Include="IntegrationEventEntityConfiguration.cs" />
-    <Compile Include="Migrations\20171021174136_initial.cs" />
-    <Compile Include="Migrations\20171021174136_initial.designer.cs">
-      <DependentUpon>20171021174136_initial.cs</DependentUpon>
+    <Compile Include="Migrations\20171027121449_Initial.cs" />
+    <Compile Include="Migrations\20171027121449_Initial.designer.cs">
+      <DependentUpon>20171027121449_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\AuctionContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -154,5 +154,6 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

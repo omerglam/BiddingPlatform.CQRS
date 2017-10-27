@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Auction.Infrastructure.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +13,7 @@ namespace Auction.Infrastructure.Migrations
                 incrementBy: 10);
 
             migrationBuilder.CreateTable(
-                name: "auction",
+                name: "Auction",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -21,11 +21,11 @@ namespace Auction.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_auction", x => x.Id);
+                    table.PrimaryKey("PK_Auction", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "integration_events_queue",
+                name: "Integration_events_queue",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -34,7 +34,7 @@ namespace Auction.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_integration_events_queue", x => x.Id);
+                    table.PrimaryKey("PK_Integration_events_queue", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -42,7 +42,7 @@ namespace Auction.Infrastructure.Migrations
                 columns: table => new
                 {
                     UniqueId = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "NEWID()"),
-                    AuctionId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    AuctionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Id = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -51,12 +51,13 @@ namespace Auction.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Auction_Items", x => x.UniqueId);
+                    table.UniqueConstraint("AlternateKey_itemId_auctionId", x => new { x.Id, x.AuctionId });
                     table.ForeignKey(
-                        name: "FK_Auction_Items_auction_AuctionId",
+                        name: "FK_Auction_Items_Auction_AuctionId",
                         column: x => x.AuctionId,
-                        principalTable: "auction",
+                        principalTable: "Auction",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -97,13 +98,13 @@ namespace Auction.Infrastructure.Migrations
                 name: "Bids");
 
             migrationBuilder.DropTable(
-                name: "integration_events_queue");
+                name: "Integration_events_queue");
 
             migrationBuilder.DropTable(
                 name: "Auction_Items");
 
             migrationBuilder.DropTable(
-                name: "auction");
+                name: "Auction");
 
             migrationBuilder.DropSequence(
                 name: "EntityFrameworkHiLoSequence");
