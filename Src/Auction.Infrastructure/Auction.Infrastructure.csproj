@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MediatR, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MediatR.3.0.1\lib\net45\MediatR.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.EntityFrameworkCore, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.EntityFrameworkCore.2.0.0\lib\netstandard2.0\Microsoft.EntityFrameworkCore.dll</HintPath>
     </Reference>
@@ -122,7 +125,7 @@
     <Compile Include="EntitiesConfigurations\AuctionEntityConfiguration.cs" />
     <Compile Include="EntitiesConfigurations\AuctionItemEntityConfiguration.cs" />
     <Compile Include="EntitiesConfigurations\BidEntityConfiguration.cs" />
-    <Compile Include="EntitiesConfigurations\AuctionRepository.cs" />
+    <Compile Include="AuctionRepository.cs" />
     <Compile Include="EntitiesConfigurations\IntegrationEventEntity.cs" />
     <Compile Include="IntegrationEventEntityConfiguration.cs" />
     <Compile Include="Migrations\20171027121449_Initial.cs" />

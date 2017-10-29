@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Auction.Events;
-using Common.Infrastructure;
 using Infrastructure;
 using Infrastructure.DDD;
 using MediatR;

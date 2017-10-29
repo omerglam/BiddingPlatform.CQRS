@@ -5,7 +5,7 @@ namespace Infrastructure.DDD
 {
     public interface IAggregateRepository<T> where T : IAggregateRoot
     {
-        Task Save(T aggregate); //Todo: publish aggregate events and only then commit all changes togther - integration events should be published only when the save to db completed succefuly
+        Task Save(T aggregate);
 
         Task<T> Find(Guid id);
     }

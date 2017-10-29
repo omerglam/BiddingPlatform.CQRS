@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using Infrastructure;
 using MediatR;
 
-namespace Common.Infrastructure
+namespace Infrastructure.DDD
 {
     public interface IEventPublisher
     {
