@@ -3,6 +3,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace Infrastructure.Persistence.EF
 {
@@ -15,34 +16,24 @@ namespace Infrastructure.Persistence.EF
             _context = context;
         }
 
-        public async Task<T> Get(Expression<Func<T, bool>> predicate, params CascadedIncludes<T, object, object>[] includes)
-        {
-            var dbSet = _context.Set<T>();
 
-            if (includes != null)
+        public async Task<T> Get(Expression<Func<T, bool>> predicate, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null)
+        {
+            var predicateInner = predicate ?? throw new ArgumentNullException(nameof(predicate));
+
+            var query = (IQueryable<T>)_context.Set<T>();
+
+            if (include != null)
             {
-                foreach (var cascadedIncludese in includes)
-                {
-                    dbSet.Include(cascadedIncludese.MainInclude).ThenInclude(cascadedIncludese.SecondaryInclude);
-                }
+                query = include(query);
             }
 
-            return await InnerGet(dbSet, predicate);
-        }
+             query = query.Where(predicateInner);
 
+            var entity = await query.FirstOrDefaultAsync();
 
-        public async Task<T> Get(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includes)
-        {
-            var dbSet = _context.Set<T>();
+            return entity;
 
-            if (includes != null)
-            {
-                foreach (var expression in includes)
-                {
-                    dbSet.Include(expression);
-                }
-            }
-            return await InnerGet(dbSet, predicate);
         }
 
         public async Task Add(T entity)

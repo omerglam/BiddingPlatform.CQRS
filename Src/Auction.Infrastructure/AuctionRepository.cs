@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Auction.Domain;
 using Infrastructure.DDD;
 using Infrastructure.Persistence.EF;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Auction.Infrastructure
 {
@@ -51,9 +54,13 @@ namespace Auction.Infrastructure
             await _unitOfWork.SaveChanges();
         }
 
-        public async Task<Domain.Auction> Find(Guid id)
+        public async Task<Domain.Auction> Find(Guid id) //TODO: check this works with the includes\ThenIncludes
         {
-            throw new NotImplementedException();
+            var repo = _unitOfWork.GetRepository<Domain.Auction>();
+
+           return await repo.Get(auction => auction.Id == id,
+                                           entity => entity.Include(e => e.Items)
+                                            .ThenInclude(a => a.Bids));
         }
     }
 
