@@ -21,7 +21,7 @@ namespace Auction.Infrastructure
         }
 
 
-        public async Task Save(Domain.Auction aggregate) //TODO: distinguish between Add\Update on the generic repository operations
+        public async Task Add(Domain.Auction aggregate) //TODO: distinguish between Add\Update on the generic repository operations
         {
             //Todo:
             // execute all domain events (scan the aggregate and publish with mediator)
@@ -30,18 +30,25 @@ namespace Auction.Infrastructure
             // publish integration events to the bus (use outbox pattern to persist event to db togther in the single transaction + 
             // + and have a background worker reading events and publishing?)
 
-           var auctionRepository = _unitOfWork.GetRepository<Domain.Auction>();
+            await Save(async (repo, agg) => await repo.Add(agg), aggregate);
+        }
 
-           await auctionRepository.Add(aggregate);
+        public async Task Update(Domain.Auction aggregate)
+        {
+          await Save(async (repo,agg) => await repo.Modify(agg), aggregate );
+        }
 
-            var eventsPublish = aggregate.Events.Select(async e => await _mediator.Publish(e));
+        private async Task Save(Func<IRepository<Domain.Auction>,Domain.Auction,Task> repositoryOperation, Domain.Auction aggregate)
+        {
+            var repository = _unitOfWork.GetRepository<Domain.Auction>();
 
-            await Task.WhenAll(eventsPublish.ToArray());
+            await repositoryOperation(repository, aggregate);
 
-            //TODO: clear events from aggegate?
-           
+            var eventsPublishTasks = aggregate.Events.Select(async e => await _mediator.Publish(e)).ToArray();
+
+            await Task.WhenAll(eventsPublishTasks);
+
             await _unitOfWork.SaveChanges();
-           
         }
 
         public Task<Domain.Auction> Find(Guid id)

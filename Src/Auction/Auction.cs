@@ -44,7 +44,7 @@ namespace Auction.Domain
 
             if (amount <= highestBid)
             {
-                _events.Add(new BidRejected(this.Id,itemId, bidder,amount, "Bid is less than the highest bid", bidTimestamp)); //TODO: should 
+                _events.Add(new BidRejected(this.Id,itemId, bidder,amount, "Bid is less than the highest bid", bidTimestamp));
             }
 
             item.AddBid(new Bid(bidder, amount, bidTimestamp));

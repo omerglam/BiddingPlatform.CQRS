@@ -5,7 +5,10 @@ namespace Infrastructure.DDD
 {
     public interface IAggregateRepository<T> where T : IAggregateRoot
     {
-        Task Save(T aggregate);
+
+        Task Add(T aggregate);
+
+        Task Update(T aggregate);
 
         Task<T> Find(Guid id);
     }

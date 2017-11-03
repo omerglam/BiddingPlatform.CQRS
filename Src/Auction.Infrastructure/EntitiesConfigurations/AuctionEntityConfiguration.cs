@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Auction.Infrastructure
+namespace Auction.Infrastructure.EntitiesConfigurations
 {
     public class AuctionEntityConfiguration : IEntityTypeConfiguration<Domain.Auction>
     {

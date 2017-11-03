@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Auction.Domain;
 using Auction.Infrastructure.EntitiesConfigurations;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,9 +13,9 @@ namespace Auction.Infrastructure
     {
         internal virtual DbSet<Domain.Auction> Auctions { get; set; }
 
-        internal virtual DbSet<Domain.AuctionItem> AuctionItems { get; set; }
+        internal virtual DbSet<AuctionItem> AuctionItems { get; set; }
 
-        internal virtual DbSet<Domain.Bid> Bids { get; set; }
+        internal virtual DbSet<Bid> Bids { get; set; }
 
         internal virtual DbSet<IntegrationEventEntity> IntegrationEvents { get; set; }
 

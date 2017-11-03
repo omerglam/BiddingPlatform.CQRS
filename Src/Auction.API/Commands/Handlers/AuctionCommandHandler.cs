@@ -26,7 +26,7 @@ namespace Auction.API.Commands.Handlers
 
             auction.AddBid(command.ItemId, command.Bidder, command.Amount, command.BidTimestamp);
 
-            await _auctionRepository.Save(auction);
+            await _auctionRepository.Update(auction);
       
         }
     }
