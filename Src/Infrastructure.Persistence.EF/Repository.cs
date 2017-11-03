@@ -9,61 +9,87 @@ namespace Infrastructure.Persistence.EF
     public class Repository<T> : IRepository<T> where T : class
     {
         private readonly DbContext _context;
-        private readonly DbSet<T> _dbSet;
 
         public Repository(DbContext context)
         {
             _context = context;
-            _dbSet = context.Set<T>();
         }
 
-        public async Task<T> Get(Expression<Func<T, bool>> predicate, params Expression<Func<T,object>>[] includes)
+        public async Task<T> Get(Expression<Func<T, bool>> predicate, params CascadedIncludes<T, object, object>[] includes)
         {
-            var predicateInner = predicate ?? throw new ArgumentNullException(nameof(predicate));
+            var dbSet = _context.Set<T>();
+
+            if (includes != null)
+            {
+                foreach (var cascadedIncludese in includes)
+                {
+                    dbSet.Include(cascadedIncludese.MainInclude).ThenInclude(cascadedIncludese.SecondaryInclude);
+                }
+            }
+
+            return await InnerGet(dbSet, predicate);
+        }
+
+
+        public async Task<T> Get(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includes)
+        {
+            var dbSet = _context.Set<T>();
 
             if (includes != null)
             {
                 foreach (var expression in includes)
                 {
-                    _dbSet.Include(expression);
+                    dbSet.Include(expression);
                 }
             }
-
-            var query = _dbSet.Where(predicateInner);
-
-            var entity = await query.FirstOrDefaultAsync();
-
-            return entity;
+            return await InnerGet(dbSet, predicate);
         }
 
         public async Task Add(T entity)
         {
+            var dbSet = _context.Set<T>();
+
             if (_context.Entry(entity).State == EntityState.Detached)
             {
-                _dbSet.Attach(entity);
+                dbSet.Attach(entity);
             }
 
-            await _dbSet.AddAsync(entity);
+            await dbSet.AddAsync(entity);
         }
 
         public async Task Modify(T entity)
         {
+            var dbSet = _context.Set<T>();
+
             if (_context.Entry(entity).State == EntityState.Detached)
             {
-                _dbSet.Attach(entity);
+                dbSet.Attach(entity);
             }
 
-            _dbSet.Update(entity);
+            dbSet.Update(entity);
         }
 
         public async Task Remove(T entity)
         {
+            var dbSet = _context.Set<T>();
+
             if (_context.Entry(entity).State == EntityState.Detached)
             {
-                _dbSet.Attach(entity);
+                dbSet.Attach(entity);
             }
 
-            _dbSet.Remove(entity);
+            dbSet.Remove(entity);
+        }
+
+        private async Task<T> InnerGet(DbSet<T> dbSet, Expression<Func<T, bool>> predicate)
+        {
+            var predicateInner = predicate ?? throw new ArgumentNullException(nameof(predicate));
+
+            var query = dbSet.Where(predicateInner);
+
+            var entity = await query.FirstOrDefaultAsync();
+
+            return entity;
         }
     }
 }

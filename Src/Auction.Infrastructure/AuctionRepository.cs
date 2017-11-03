@@ -51,7 +51,7 @@ namespace Auction.Infrastructure
             await _unitOfWork.SaveChanges();
         }
 
-        public Task<Domain.Auction> Find(Guid id)
+        public async Task<Domain.Auction> Find(Guid id)
         {
             throw new NotImplementedException();
         }
