@@ -8,6 +8,8 @@ namespace Infrastructure.Persistence.EF
     {
         Task<T> Get(Expression<Func<T,bool>> predicate, params Expression<Func<T,object>>[] includes);
 
+        Task<T> Get(Expression<Func<T, bool>> predicate, params CascadedIncludes<T, object, object>[] includes);
+
         Task Add(T entity);
 
         Task Modify(T entity);
