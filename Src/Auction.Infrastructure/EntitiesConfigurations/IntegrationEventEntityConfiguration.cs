@@ -1,10 +1,7 @@
-﻿
-
-using Auction.Infrastructure.EntitiesConfigurations;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Auction.Infrastructure
+namespace Auction.Infrastructure.EntitiesConfigurations
 {
     internal class IntegrationEventEntityConfiguration : IEntityTypeConfiguration<IntegrationEventEntity>
     {
