@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 
 namespace Auction.API
 {
@@ -10,7 +11,18 @@ namespace Auction.API
     {
         static void Main(string[] args)
         {
-            //Todo: use Owin self host with TopShelf 
+            //Todo: use self host + TopShelf as a windows service
+                
         }
+
+       // public static void Main(string[] args)
+       // {
+       //     BuildWebHost(args).Run();
+       // }
+       //
+       // public static IWebHost BuildWebHost(string[] args) =>
+       //     WebHost.CreateDefaultBuilder(args)
+       //         .UseStartup<Startup>()
+       //         .Build();
     }
 }

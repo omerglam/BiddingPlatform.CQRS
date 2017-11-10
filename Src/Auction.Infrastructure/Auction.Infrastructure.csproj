@@ -122,12 +122,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuctionContext.cs" />
+    <Compile Include="AuctionUnitOfWork.cs" />
     <Compile Include="EntitiesConfigurations\AuctionEntityConfiguration.cs" />
     <Compile Include="EntitiesConfigurations\AuctionItemEntityConfiguration.cs" />
     <Compile Include="EntitiesConfigurations\BidEntityConfiguration.cs" />
     <Compile Include="AuctionRepository.cs" />
     <Compile Include="EntitiesConfigurations\IntegrationEventEntity.cs" />
-    <Compile Include="IntegrationEventEntityConfiguration.cs" />
+    <Compile Include="EntitiesConfigurations\IntegrationEventEntityConfiguration.cs" />
     <Compile Include="Migrations\20171027121449_Initial.cs" />
     <Compile Include="Migrations\20171027121449_Initial.designer.cs">
       <DependentUpon>20171027121449_Initial.cs</DependentUpon>

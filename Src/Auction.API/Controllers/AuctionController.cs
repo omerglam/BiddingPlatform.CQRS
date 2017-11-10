@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.Http;
 using Auction.API.Commands;
 using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Auction.API.Controllers
 {
     [Route("/Auction")]
-    public class AuctionController : ApiController
+    public class AuctionController : Controller
     {
         private readonly IMediator _mediator;
 
@@ -19,9 +19,9 @@ namespace Auction.API.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost]
-        [Route("/{auctionId}/item/{itemId}/bid")]
-        public async Task AddBidToAuctionItem([FromUri] Guid auctionId, [FromUri] int itemId, BidRequest bidRequest)
+        [HttpPost("/{auctionId}/item/{itemId}/bid")]
+        //[Route("/{auctionId}/item/{itemId}/bid")]
+        public async Task AddBidToAuctionItem(/*[FromUri]*/ Guid auctionId, /*[FromUri]*/ int itemId, [FromBody]BidRequest bidRequest)
         {
             //TODO: get ambient user info
 
