@@ -16,6 +16,7 @@ namespace Auction.API
         //        
         //}
 
+        //TODO: change project template (Asp.net core) to deal with libuv error (https://github.com/aspnet/KestrelHttpServer/issues/1292#issuecomment-278871702)
         public static void Main(string[] args)
         {
             BuildWebHost(args).Run();

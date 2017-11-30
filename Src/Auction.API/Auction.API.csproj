@@ -1,6 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+   <PropertyGroup>
+    <RuntimeIdentifier>win7-x86</RuntimeIdentifier>
+    <BaseNuGetRuntimeIdentifier>win7-x86</BaseNuGetRuntimeIdentifier>
+  </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -509,6 +513,10 @@
     <ProjectReference Include="..\Infrastructure.DDD\Infrastructure.DDD.csproj">
       <Project>{8d96397b-c503-4b43-ac26-943db4ce45e4}</Project>
       <Name>Infrastructure.DDD</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Persistence.EF\Infrastructure.Persistence.EF.csproj">
+      <Project>{ad46066a-0f7b-44f5-9934-94a0c7f4606f}</Project>
+      <Name>Infrastructure.Persistence.EF</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

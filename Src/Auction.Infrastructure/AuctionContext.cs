@@ -20,6 +20,11 @@ namespace Auction.Infrastructure
 
         internal virtual DbSet<IntegrationEventEntity> IntegrationEvents { get; set; }
 
+        public AuctionContext(DbContextOptions<AuctionContext> contextOptions ) :base(contextOptions)
+        {
+            
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["Auction"].ConnectionString);

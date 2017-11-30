@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Auction.API.Commands;
 using Auction.API.Commands.Handlers;
 using Auction.API.Events.Handlers;
 using Auction.Events;
@@ -15,13 +16,16 @@ namespace Auction.API.Infrastructure
     {
         protected override void Load(ContainerBuilder builder)
         {
+
             builder
                 .RegisterType<Mediator>()
                 .As<IMediator>()
                 .InstancePerLifetimeScope();
 
-            builder.RegisterType<AuctionCommandHandler>().As(typeof(IAsyncRequestHandler<,>)).InstancePerDependency();
-            builder.RegisterType<DomainEventToIntegrationEventHandler>().As(typeof(IAsyncNotificationHandler<>)).InstancePerDependency();
+            //builder.RegisterType<AuctionCommandHandler>().As(typeof(IAsyncRequestHandler<>)).InstancePerDependency();
+            builder.RegisterAssemblyTypes(typeof(AddBidCommand).Assembly).AsClosedTypesOf(typeof(IAsyncRequestHandler<>)).InstancePerDependency();
+            //builder.RegisterType<DomainEventToIntegrationEventHandler>().As(typeof(IAsyncNotificationHandler<>)).InstancePerDependency();
+            builder.RegisterAssemblyTypes(typeof(DomainEventToIntegrationEventHandler).Assembly).AsClosedTypesOf(typeof(IAsyncNotificationHandler<>)).InstancePerDependency();
 
             builder.RegisterType<AuctionCreated>().As<INotification>();
             builder.RegisterType<BidAccepted>().As<INotification>();
