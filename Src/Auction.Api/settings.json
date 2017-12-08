@@ -1,0 +1,3 @@
+﻿{
+	"connectionString": "Data Source=platform_db;uid=sa;pwd=Oscar!12345;Initial Catalog=Auction;Connect Timeout=11;Max Pool Size=40000;"
+}

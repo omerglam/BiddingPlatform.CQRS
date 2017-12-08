@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 
 namespace Auction.API
 {
@@ -25,6 +27,13 @@ namespace Auction.API
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
+                .ConfigureAppConfiguration((builderContext, config) =>
+                {
+                    config.AddJsonFile("settings.json");
+                }).UseKestrel(kestreloptions =>
+                {
+                    kestreloptions.Listen(IPAddress.Loopback,5001);
+                })
                 .Build();
     }
 }

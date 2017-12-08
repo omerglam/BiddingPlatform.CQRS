@@ -21,11 +21,11 @@ namespace Auction.API.Controllers
 
         [HttpPost("/{auctionId}/item/{itemId}/bid")]
         //[Route("/{auctionId}/item/{itemId}/bid")]
-        public async Task AddBidToAuctionItem(/*[FromUri]*/ Guid auctionId, /*[FromUri]*/ int itemId, [FromBody]BidRequest bidRequest)
+        public async Task AddBidToAuctionItem(/*[FromUri]*/ string auctionId, /*[FromUri]*/ int itemId, [FromBody]BidRequest bidRequest)
         {
             //TODO: get ambient user info
 
-            var bidCommand = new AddBidCommand("TODO: GET AMBIENT USER INFO",auctionId, itemId,bidRequest.Amount, DateTime.UtcNow);
+            var bidCommand = new AddBidCommand("TODO: GET AMBIENT USER INFO",Guid.Parse(auctionId), itemId,bidRequest.Amount, DateTime.UtcNow);
 
             //Todo: dispatch command.
             await _mediator.Send(bidCommand);

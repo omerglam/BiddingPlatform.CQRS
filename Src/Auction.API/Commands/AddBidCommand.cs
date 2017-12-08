@@ -1,5 +1,4 @@
 ﻿using System;
-using Infrastructure;
 using MediatR;
 
 namespace Auction.API.Commands
