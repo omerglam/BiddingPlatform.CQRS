@@ -18,8 +18,6 @@ namespace Auction.Infrastructure.EntitiesConfigurations
 
             builder.HasAlternateKey("Id", "AuctionId").HasName("AlternateKey_itemId_auctionId"); // Id is scoped and unique per auction id 
 
-            
-
         }
     }
 }

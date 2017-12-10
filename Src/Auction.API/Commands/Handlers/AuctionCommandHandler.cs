@@ -5,7 +5,7 @@ using MediatR;
 
 namespace Auction.API.Commands.Handlers
 {
-    public class AuctionCommandHandler : IAsyncRequestHandler<AddBidCommand>
+    public class AuctionCommandHandler : IAsyncRequestHandler<AddBidCommand>, IAsyncRequestHandler<CreateAuctionCommand>
     {
         private readonly IAggregateRepository<Domain.Auction> _auctionRepository;
 
@@ -14,7 +14,7 @@ namespace Auction.API.Commands.Handlers
             _auctionRepository = auctionRepository;
         }
 
-        public async Task Handle(AddBidCommand command)
+        public async Task Handle(AddBidCommand command) //TODO:  move to other command handler (Bid command handler?)
         {
             var auction = await _auctionRepository.Find(command.Id);
 
@@ -27,6 +27,15 @@ namespace Auction.API.Commands.Handlers
 
             await _auctionRepository.Update(auction);
       
+        }
+
+        public async Task Handle(CreateAuctionCommand message)
+        {
+            // Validation? how to validate busniess requirement of a unique auction name ?
+
+            var auction = new Domain.Auction(new Guid(), message.Name, message.Items);
+
+            await _auctionRepository.Add(auction);
         }
     }
 }
