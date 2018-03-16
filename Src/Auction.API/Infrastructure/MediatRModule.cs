@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Auction.API.Commands;
 using Auction.API.Commands.Handlers;
 using Auction.API.Events.Handlers;
+using Auction.Domain.Events;
 using Auction.Events;
 using Autofac;
 using MediatR;
@@ -25,7 +26,7 @@ namespace Auction.API.Infrastructure
             //builder.RegisterType<AuctionCommandHandler>().As(typeof(IAsyncRequestHandler<>)).InstancePerDependency();
             builder.RegisterAssemblyTypes(typeof(AddBidCommand).Assembly).AsClosedTypesOf(typeof(IAsyncRequestHandler<>)).InstancePerDependency();
             //builder.RegisterType<DomainEventToIntegrationEventHandler>().As(typeof(IAsyncNotificationHandler<>)).InstancePerDependency();
-            builder.RegisterAssemblyTypes(typeof(DomainEventToIntegrationEventHandler).Assembly).AsClosedTypesOf(typeof(IAsyncNotificationHandler<>)).InstancePerDependency();
+            builder.RegisterAssemblyTypes(typeof(BiddingEventsEventHandler).Assembly).AsClosedTypesOf(typeof(IAsyncNotificationHandler<>)).InstancePerDependency();
 
             builder.RegisterType<AuctionCreated>().As<INotification>();
             builder.RegisterType<BidAccepted>().As<INotification>();

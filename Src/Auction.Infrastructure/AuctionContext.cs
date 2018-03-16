@@ -27,7 +27,7 @@ namespace Auction.Infrastructure
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["Auction"].ConnectionString);
+           // optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["Auction"].ConnectionString);
 
             base.OnConfiguring(optionsBuilder);
         }

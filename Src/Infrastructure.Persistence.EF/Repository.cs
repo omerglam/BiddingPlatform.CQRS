@@ -17,6 +17,7 @@ namespace Infrastructure.Persistence.EF
         }
 
 
+
         public async Task<T> Get(Expression<Func<T, bool>> predicate, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null)
         {
             var predicateInner = predicate ?? throw new ArgumentNullException(nameof(predicate));
@@ -34,6 +35,23 @@ namespace Infrastructure.Persistence.EF
 
             return entity;
 
+        }
+
+        public async Task<T[]> GetCollection(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null)
+        {
+            var query = (IQueryable<T>)_context.Set<T>();
+
+            if (predicate != null)
+            {
+                query = query.Where(predicate);
+            }
+
+            if (include != null)
+            {
+                query = include(query);
+            }
+
+            return await query.ToArrayAsync();
         }
 
         public async Task Add(T entity)

@@ -5,7 +5,7 @@ using MediatR;
 
 namespace Auction.API.Commands.Handlers
 {
-    public class AuctionCommandHandler : IAsyncRequestHandler<AddBidCommand>, IAsyncRequestHandler<CreateAuctionCommand>
+    public class AuctionCommandHandler : IAsyncRequestHandler<CreateAuctionCommand>, IAsyncRequestHandler<AdditemToAuctionCommand>
     {
         private readonly IAggregateRepository<Domain.Auction> _auctionRepository;
 
@@ -13,21 +13,7 @@ namespace Auction.API.Commands.Handlers
         {
             _auctionRepository = auctionRepository;
         }
-
-        public async Task Handle(AddBidCommand command) //TODO:  move to other command handler (Bid command handler?)
-        {
-            var auction = await _auctionRepository.Find(command.Id);
-
-            if (auction is null) // Todo: in case of asynchornous command handling - should this validation be moved to the command initiator (i.e. API)?
-            {
-                throw new InvalidOperationException($"auction id: {command.Id} not found");
-            }
-
-            auction.AddBid(command.ItemId, command.Bidder, command.Amount, command.BidTimestamp);
-
-            await _auctionRepository.Update(auction);
       
-        }
 
         public async Task Handle(CreateAuctionCommand message)
         {
@@ -36,6 +22,13 @@ namespace Auction.API.Commands.Handlers
             var auction = new Domain.Auction(new Guid(), message.Name, message.Items);
 
             await _auctionRepository.Add(auction);
+        }
+
+        public async Task Handle(AdditemToAuctionCommand message)
+        {
+            var auction = await _auctionRepository.Find(message.AuctionId);
+
+            auction.AddItem(message.Item.Name, message.Item.Description, message.Item.ReservedPrice);
         }
     }
 }

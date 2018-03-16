@@ -28,6 +28,7 @@ namespace Auction.API
             services.AddEntityFrameworkSqlServer()
                 .AddDbContext<AuctionContext>(options =>
                 {
+                    
                     options.UseSqlServer(_configuration["ConnectionString"], builder =>
                     {
                         builder.MigrationsAssembly(typeof(AuctionContext).Assembly.GetName().Name);

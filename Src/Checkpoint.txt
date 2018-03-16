@@ -1,6 +1,6 @@
 -- Todo:
 
 1) Scoped db context (allow domain event handling to happen under the same transaction) - check reference application 
-	- create order command arrive from the bus (db context per HTTP request scope)
+	- create order command arrive from the bus (db context per HTTP request scope and command\event scope)
 2) implement auction repository\unit of work pattern with EF (Add\Update operation)
 3) Orleans actors as cache layers (+ SignlarR publication of notification to clients)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Auction.Domain.Events;
 using Auction.Events;
 using Infrastructure;
 using Infrastructure.DDD;
@@ -18,15 +19,20 @@ namespace Auction.Domain
 
         public IEnumerable<INotification> Events  => _events;
 
-        //public AuctionItem[] Items { get; private set; }
         public ICollection<AuctionItem> Items { get; private set; }
 
+        protected Auction() {}
 
         public Auction(Guid id, string name, AuctionItem[] items)
         {
             Id = id;
-            Items = items;
+            Items = new List<AuctionItem>();
             Name = name;
+
+            foreach (var auctionItem in items)
+            {
+                AddItemToAuction(auctionItem.Name,auctionItem.Description,auctionItem.ReservedPrice);
+            }
 
             _events.Add(new AuctionCreated(this.Id, this.Name, items.Select(i => i.Name).ToArray()));
         }
@@ -50,6 +56,27 @@ namespace Auction.Domain
             item.AddBid(new Bid(bidder, amount, bidTimestamp));
 
             _events.Add(new BidAccepted(this.Id, itemId, bidder, amount, bidTimestamp));
+
+        }
+
+        public void AddItem(string newItemName, string description, decimal? reservedPrice)
+        {
+            AddItemToAuction(newItemName, description, reservedPrice);
+
+            //TODO: add domain event "Auction item added" ?
+        }
+
+        private void AddItemToAuction(string newItemName, string description, decimal? reservedPrice)
+        {
+
+            if (Items.Any(item => item.Name == newItemName))
+            {
+                throw new InvalidOperationException("Item name already exists");
+            }
+
+            var newItemId = Items.Count;
+
+            Items.Add(new AuctionItem(newItemId, newItemName, description, reservedPrice));
 
         }
     }

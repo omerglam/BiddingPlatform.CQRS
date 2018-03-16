@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Auction.Api.Controllers.Model;
+using Auction.Api.ReadModel.Model;
 using Auction.API.Commands;
 using Auction.API.Controllers.Model;
+using Auction.API.ReadModel;
 using Auction.Domain;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -16,14 +18,24 @@ namespace Auction.API.Controllers
     public class AuctionController : Controller
     {
         private readonly IMediator _mediator;
+        private readonly IAuctionQueries _auctionQueries;
 
-        public AuctionController(IMediator mediator)
+        //TODO: graphql for read, Rest endpoints for write operations?
+
+        public AuctionController(IMediator mediator, IAuctionQueries auctionQueries)
         {
             _mediator = mediator;
+            _auctionQueries = auctionQueries;
         }
 
-        [HttpPost()]
-        public async Task Create(CreateAuctionRequest createRequest)
+        [HttpGet]
+        public async Task<AuctionHighLevelView[]> Get()
+        {
+            return await _auctionQueries.GetAuctionsHighLevelView();
+        }
+
+        [HttpPost]
+        public async Task Create([FromBody]CreateAuctionRequest createRequest)
         {
             //TODO: id assignemnt of scoped auction item - responsability?
 
@@ -37,22 +49,6 @@ namespace Auction.API.Controllers
             }
 
             await _mediator.Send(new CreateAuctionCommand(createRequest.Name, auctionItems));
-        }
-
-
-        [HttpPost("/{auctionId}/item/{itemId}/bid")]
-        //[Route("/{auctionId}/item/{itemId}/bid")]
-        public async Task AddBidToAuctionItem(/*[FromUri]*/ string auctionId, /*[FromUri]*/ int itemId, [FromBody]BidRequest bidRequest)
-        {
-            //TODO: get ambient user info
-
-            var bidCommand = new AddBidCommand("TODO: GET AMBIENT USER INFO", Guid.Parse(auctionId), itemId, bidRequest.Amount, DateTime.UtcNow);
-
-            //Todo: dispatch command.
-            await _mediator.Send(bidCommand);
-
-            //Todo: read from read model the command results. {bidder,item,timestamp as key to lookup}
-
         }
     }
 }

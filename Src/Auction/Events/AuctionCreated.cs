@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Infrastructure;
 using MediatR;
 
-namespace Auction.Events
+namespace Auction.Domain.Events
 {
     public class AuctionCreated : INotification
     {

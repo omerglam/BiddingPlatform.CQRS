@@ -11,6 +11,8 @@ namespace Infrastructure.Persistence.EF
 
         Task<T> Get(Expression<Func<T, bool>> predicate, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null);
 
+        Task<T[]> GetCollection(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null);
+
         Task Add(T entity);
 
         Task Modify(T entity);

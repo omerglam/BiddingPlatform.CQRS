@@ -9,16 +9,16 @@ using MediatR;
 
 namespace Auction.API.Events.Handlers
 {
-    public class DomainEventToIntegrationEventHandler : IAsyncNotificationHandler<BidAccepted>
+    public class BiddingEventsEventHandler : IAsyncNotificationHandler<BidAccepted>
     {
         public Task Handle(BidAccepted bidAcceptedNotification)
         {
             var bidAddedEvent = new BidAddedIntegrationEvent(bidAcceptedNotification.SourceId, bidAcceptedNotification.ItemId,bidAcceptedNotification.Bidder,bidAcceptedNotification.Amount);
 
-            //Todo: store the event in the events table (using the events dbcontext) as part of the transaction, a background worker will dispatch the message later.
+            //Todo: store the event in the events table (using the events dbcontext) as part of the transaction, a background worker will dispatch the message later. use IHostedServices
 
 
-            throw new NotImplementedException();
+            return Task.CompletedTask;
         }
     }
 }

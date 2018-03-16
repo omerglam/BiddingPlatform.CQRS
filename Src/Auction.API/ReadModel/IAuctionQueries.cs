@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Auction.Api.ReadModel.Model;
 using Auction.API.ReadModel.Model;
+using Auction.Infrastructure;
 
 namespace Auction.API.ReadModel
 {
-    interface IAuctionQueries
+    public interface IAuctionQueries
     {
-        AuctionStatusReadModel GetAuctionStatus(Guid auctionId);
+        Task<AuctionStatusReadModel> GetAuctionStatus(Guid auctionId);
+
+        Task<AuctionHighLevelView[]> GetAuctionsHighLevelView();
     }
 }

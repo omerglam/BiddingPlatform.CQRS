@@ -12,15 +12,10 @@ namespace Auction.API
 {
     class Program
     {
-        //static void Main(string[] args)
-        //{
-        //    //Todo: use self host + TopShelf as a windows service
-        //        
-        //}
-
         //TODO: change project template (Asp.net core) to deal with libuv error (https://github.com/aspnet/KestrelHttpServer/issues/1292#issuecomment-278871702)
         public static void Main(string[] args)
         {
+            //TODO: handle migration on db not exists
             BuildWebHost(args).Run();
         }
        
